@@ -1,0 +1,30 @@
+[build-system]
+requires = ["hatchling>=1.25"]
+build-backend = "hatchling.build"
+
+[project]
+name = "metasleuth-osint"
+version = "0.1.0"
+description = "Offline metadata extraction for images, PDFs, and Office documents"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "Proprietary Software License — Free Use, No Modification" }
+license-files = ["LICENSE"]
+authors = [{name = "Noir Stack LLC"}]
+keywords = ["osint", "metadata", "exif", "forensics", "privacy"]
+dependencies = ["Pillow>=10,<13", "pypdf>=4,<7", "typer>=0.12,<1"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "ruff>=0.6", "build>=1"]
+
+[project.scripts]
+metasleuth = "metasleuth.cli:app"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/metasleuth"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+
+[tool.ruff.lint]
+ignore = ["B008"] # Typer command parameters intentionally use Option/Argument defaults.
