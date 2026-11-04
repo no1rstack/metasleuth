@@ -45,7 +45,10 @@ Filesystem `ctime` is not universally a creation time: on Unix-like systems it g
 
 ## Publishing
 
-Confirm the distribution name is available on PyPI and run `python -m build` before publishing. GitHub Actions CI is included; publishing is intentionally not automated until release ownership is finalized.
+After updating the package version, push the matching tag (for example,
+`v0.1.1`). GitHub Actions verifies the tag, builds the distributions, validates
+them with Twine, and publishes using the repository's `PYPI_API_TOKEN` Actions
+secret. Ordinary branch pushes never publish a release.
 
 ## License
 
